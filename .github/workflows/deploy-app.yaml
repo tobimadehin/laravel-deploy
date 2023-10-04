@@ -28,14 +28,16 @@ jobs:
     - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
 
     - name: copy file via ssh key
-      uses: appleboy/scp-action@master
+      uses: appleboy/scp-action@0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
       with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
         source: "./dist/my_angular_app/"
         target: "/var/www/html/"
+        strip_components: 3
 
 # jobs:
 #   deploy:
