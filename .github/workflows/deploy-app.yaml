@@ -35,7 +35,7 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "./dist/my_angular_app/"
+        source: "./my_angular_app/dist/my_angular_app/"
         target: "/var/www/html/"
         strip_components: 3
 
