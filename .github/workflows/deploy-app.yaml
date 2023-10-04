@@ -25,9 +25,7 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - run: npm install
-    - run: npm install -g @angular/cli > /dev/null
-    - run: ng build --prod
+    - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm build --prod
 
     - name: copy file via ssh key
       uses: appleboy/scp-action@master
