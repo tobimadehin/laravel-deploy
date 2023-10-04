@@ -28,7 +28,7 @@ jobs:
     - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
 
     - name: copy file via ssh key
-      uses: appleboy/scp-action@0.1.4
+      uses: appleboy/scp-action@v0.1.4
       env:
         HOST: ${{ secrets.SSH_HOST }}
         USERNAME: ${{ secrets.SSH_USERNAME }}
