@@ -32,11 +32,10 @@ jobs:
       env:
         host: ${{ secrets.SSH_HOST }}
         username: ${{ secrets.SSH_USERNAME }}
-        port: 22
         key: ${{ secrets.SSH_KEY }}
         source: "./dist/my_angular_app/"
         target: "/var/www/html/"
-        
+
 # jobs:
 #   deploy:
 #     runs-on: ubuntu-latest
