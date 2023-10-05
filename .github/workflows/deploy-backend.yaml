@@ -13,7 +13,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: ls && cd ./laravel_app
+    - uses: actions/checkout@v3
+    - run: cd laravel_app
     - name: Copy laravel files via ssh key
       uses: appleboy/scp-action@v0.1.4
       env:
