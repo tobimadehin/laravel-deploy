@@ -9,6 +9,6 @@ export class ApiserviceService {
     constructor(private _http:HttpClient) {}
 
     getdata() {
-        return this._http.get('http://127.0.0.1:8000/api/get-current-time');
+        return this._http.get('http://159.203.140.148/api/get-current-time');
     }
 }

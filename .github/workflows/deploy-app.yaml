@@ -27,7 +27,7 @@ jobs:
 
     - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
 
-    - name: copy file via ssh key
+    - name: Copy angular files via ssh key
       uses: appleboy/scp-action@v0.1.4
       env:
         HOST: ${{ secrets.SSH_HOST }}
@@ -37,7 +37,16 @@ jobs:
       with:
         source: "./my_angular_app/dist/my_angular_app/*"
         target: "/var/www/html/"
-        strip_components: 3
+    - name: Copy laravel files via ssh key
+      uses: appleboy/scp-action@v0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: "./laravel_app/*"
+        target: "/var/www/laravel_app/"
 
 # jobs:
 #   deploy:
