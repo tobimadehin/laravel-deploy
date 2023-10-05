@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - run: cd laravel_app
     - name: Copy laravel files via ssh key
       uses: appleboy/scp-action@v0.1.4
       env:
