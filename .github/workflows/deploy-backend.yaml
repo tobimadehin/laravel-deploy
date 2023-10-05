@@ -24,4 +24,4 @@ jobs:
         KEY: ${{ secrets.SSH_KEY }}
       with:
         source: "./laravel_app/*"
-        target: "/var/www/laravel_app/"
+        target: "/var/www/"
