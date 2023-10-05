@@ -37,33 +37,3 @@ jobs:
       with:
         source: "./my_angular_app/dist/my_angular_app/*"
         target: "/var/www/html/"
-    - name: Copy laravel files via ssh key
-      uses: appleboy/scp-action@v0.1.4
-      env:
-        HOST: ${{ secrets.SSH_HOST }}
-        USERNAME: ${{ secrets.SSH_USERNAME }}
-        PORT: 22
-        KEY: ${{ secrets.SSH_KEY }}
-      with:
-        source: "./laravel_app/*"
-        target: "/var/www/laravel_app/"
-
-# jobs:
-#   deploy:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Deploy to DigitalOcean Droplet
-#         uses: appleboy/ssh-action@master
-#         with:
-#           host: ${{secrets.SSH_HOST}}
-#           username: ${{secrets.SSH_USERNAME}}
-#           key: ${{secrets.SSH_KEY}}
-#           script: |
-#             export NVM_DIR=~/.nvm
-#             source ~/.nvm/nvm.sh
-#             rm -rf test
-#             mkdir test
-#             cd test
-#             git clone https://github.com/tobimadehin/devops-test.git
-#             cd my_angular_app && npm install && npm run build
-#             echo 'Deployment to digital ocean finished'

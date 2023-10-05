@@ -1,0 +1,25 @@
+name: Deploy Backend to DigitalOcean Droplet
+'on':
+  push:
+    branches:
+      - master
+    
+    paths:
+      - "laravel_app/**"
+
+jobs:
+  build:
+    name: Build laravel app
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Copy laravel files via ssh key
+      uses: appleboy/scp-action@v0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: "./laravel_app/*"
+        target: "/var/www/laravel_app/"
