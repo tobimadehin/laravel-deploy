@@ -1,8 +1,9 @@
 resource "digitalocean_droplet" "my_droplet" {
-    name      = "my-droplet"
+    name      = "my-droplet-${count.index + 1}"
     region    = "nyc3"
     size      = "s-1vcpu-1gb"
     image     = "ubuntu-20-04-x64"
+    count     = 3
     ssh_keys  = [digitalocean_ssh_key.my_ssh_key.id]
 }
 
@@ -31,13 +32,13 @@ resource "digitalocean_loadbalancer" "public" {
     certificate_name = digitalocean_certificate.my_ssl_certificate.name
   }
 
-  droplet_ids = [digitalocean_droplet.my_droplet.id]
+  droplet_ids = [for droplet in digitalocean_droplet.my_droplet : droplet.id]
 }
 
 resource "digitalocean_firewall" "my-firewall" {
   name = "my-firewall"
 
-  droplet_ids = [digitalocean_droplet.my_droplet.id]
+  droplet_ids = [for droplet in digitalocean_droplet.my_droplet : droplet.id]
 
   inbound_rule {
     protocol         = "tcp"
