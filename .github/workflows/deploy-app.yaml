@@ -35,7 +35,7 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "dist/"
+        source: "my_angular_app/dist/"
         target: "/var/www/html/"
         strip_components: 1
 
@@ -47,7 +47,7 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "dist/"
+        source: "my_angular_app/dist/"
         target: "/var/www/html/"
         strip_components: 1
 
@@ -59,6 +59,6 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "dist/"
+        source: "my_angular_app/dist/"
         target: "/var/www/html/"
         strip_components: 1
