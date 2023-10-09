@@ -27,10 +27,32 @@ jobs:
 
     - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
 
-    - name: Copy angular files via ssh key
+    - name: Copy angular files via ssh key to Server 1
       uses: appleboy/scp-action@v0.1.4
       env:
-        HOST: ${{ secrets.SSH_HOST }}
+        HOST: ${{ secrets.SSH_HOST1 }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: "./my_angular_app/dist/my_angular_app/*"
+        target: "/var/www/html/"
+
+    - name: Copy angular files via ssh key to Server 2
+      uses: appleboy/scp-action@v0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST2 }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: "./my_angular_app/dist/my_angular_app/*"
+        target: "/var/www/html/"
+
+    - name: Copy angular files via ssh key to Server 3
+      uses: appleboy/scp-action@v0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST3 }}
         USERNAME: ${{ secrets.SSH_USERNAME }}
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
