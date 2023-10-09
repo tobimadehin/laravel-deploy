@@ -35,8 +35,9 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "./my_angular_app/dist/my_angular_app/*"
+        source: "my_angular_app/dist/my_angular_app/"
         target: "/var/www/html/"
+        strip_components: 1
 
     - name: Copy angular files via ssh key to Server 2
       uses: appleboy/scp-action@v0.1.4
@@ -46,8 +47,9 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "./my_angular_app/dist/my_angular_app/*"
+        source: "my_angular_app/dist/my_angular_app/"
         target: "/var/www/html/"
+        strip_components: 1
 
     - name: Copy angular files via ssh key to Server 3
       uses: appleboy/scp-action@v0.1.4
@@ -57,5 +59,6 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "./my_angular_app/dist/my_angular_app/*"
+        source: "my_angular_app/dist/my_angular_app/"
         target: "/var/www/html/"
+        strip_components: 1
