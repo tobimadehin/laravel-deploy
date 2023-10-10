@@ -14,8 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-
-    - run: ls -a
     
     - name: Copy laravel files via ssh key to Server 1
       uses: appleboy/scp-action@v0.1.4
@@ -24,7 +22,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        source: "laravel_app/"
+        source: "laravel_app/*"
         target: var/www/
     
     - name: Copy laravel files via ssh key to Server 2
@@ -34,7 +32,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        source: "laravel_app/"
+        source: "laravel_app/*"
         target: var/www/
 
     - name: Copy laravel files via ssh key to Server 3
@@ -44,7 +42,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        source: "laravel_app/"
+        source: "laravel_app/*"
         target: var/www/
 
     # - name: Configure Server 1
