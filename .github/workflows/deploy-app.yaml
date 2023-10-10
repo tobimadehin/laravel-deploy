@@ -37,7 +37,6 @@ jobs:
       with:
         source: my_angular_app/dist/
         target: var/www/html/
-        strip_components: 1
 
     - name: Copy static files via ssh key to Server 2
       uses: appleboy/scp-action@v0.1.4
@@ -49,7 +48,6 @@ jobs:
       with:
         source: my_angular_app/dist/
         target: var/www/html/
-        strip_components: 1
 
     - name: Copy static files via ssh key to Server 3
       uses: appleboy/scp-action@v0.1.4
@@ -61,7 +59,6 @@ jobs:
       with:
         source: my_angular_app/dist/
         target: var/www/html/
-        strip_components: 1
 
     - name: Move /dist folder contents to /html folder on Server 1
       uses: appleboy/ssh-action@v1.0.0
