@@ -64,7 +64,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        script: cp -R /var/www/html/dist/* /var/www/html/
+        script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
 
     - name: Move /dist folder contents to /html folder on Server 2
       uses: appleboy/ssh-action@v1.0.0
@@ -73,7 +73,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        script: cp -R /var/www/html/dist/* /var/www/html/
+        script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
 
     - name: Move /dist folder contents to /html folder on Server 3
       uses: appleboy/ssh-action@v1.0.0
@@ -82,4 +82,4 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        script: cp -R /var/www/html/dist/* /var/www/html/
+        script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
