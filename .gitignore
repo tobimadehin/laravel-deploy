@@ -1,4 +1,4 @@
-*.tfvars
 *.lock
 *.pem
 *.crt
+*.env

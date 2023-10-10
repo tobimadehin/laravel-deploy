@@ -14,14 +14,63 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - run: cd laravel_app
-    - name: Copy laravel files via ssh key
+    
+    - name: Copy laravel files via ssh key to Server 1
       uses: appleboy/scp-action@v0.1.4
       env:
-        HOST: ${{ secrets.SSH_HOST }}
+        HOST: ${{ secrets.SSH_HOST1 }}
         USERNAME: ${{ secrets.SSH_USERNAME }}
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: "./laravel_app/*"
-        target: "/var/www/"
+        source: laravel_app/
+        target: var/www/
+    
+    - name: Copy laravel files via ssh key to Server 2
+      uses: appleboy/scp-action@v0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST2 }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: laravel_app/
+        target: var/www/
+
+    - name: Copy laravel files via ssh key to Server 3
+      uses: appleboy/scp-action@v0.1.4
+      env:
+        HOST: ${{ secrets.SSH_HOST3 }}
+        USERNAME: ${{ secrets.SSH_USERNAME }}
+        PORT: 22
+        KEY: ${{ secrets.SSH_KEY }}
+      with:
+        source: laravel_app/
+        target: var/www/
+
+    - name: Configure Server 1
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST1 }}
+        username: ${{ secrets.SSH_USERNAME }}
+        port: 22
+        key: ${{ secrets.SSH_KEY }}
+        script: ${{ secrets.SSH_CONFIG_SERVER }}
+
+    - name: Configure Server 2
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST2 }}
+        username: ${{ secrets.SSH_USERNAME }}
+        port: 22
+        key: ${{ secrets.SSH_KEY }}
+        script: ${{ secrets.SSH_CONFIG_SERVER }}
+
+    - name: Configure Server 3
+      uses: appleboy/ssh-action@v1.0.0
+      with:
+        host: ${{ secrets.SSH_HOST3 }}
+        username: ${{ secrets.SSH_USERNAME }}
+        port: 22
+        key: ${{ secrets.SSH_KEY }}
+        script: ${{ secrets.SSH_CONFIG_SERVER }}
