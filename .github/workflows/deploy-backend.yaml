@@ -22,7 +22,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        source: laravel_app/
+        source: "laravel_app/"
         target: var/www/
     
     - name: Copy laravel files via ssh key to Server 2
@@ -32,7 +32,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        source: laravel_app/
+        source: "laravel_app/"
         target: var/www/
 
     - name: Copy laravel files via ssh key to Server 3
@@ -42,32 +42,32 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         port: 22
         key: ${{ secrets.SSH_KEY }}
-        source: laravel_app/
+        source: "laravel_app/"
         target: var/www/
 
-    - name: Configure Server 1
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST1 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        script: ${{ secrets.SSH_CONFIG_SERVER }}
+    # - name: Configure Server 1
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST1 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: ${{ secrets.SSH_CONFIG_SERVER }}
 
-    - name: Configure Server 2
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST2 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        script: ${{ secrets.SSH_CONFIG_SERVER }}
+    # - name: Configure Server 2
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST2 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: ${{ secrets.SSH_CONFIG_SERVER }}
 
-    - name: Configure Server 3
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST3 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        script: ${{ secrets.SSH_CONFIG_SERVER }}
+    # - name: Configure Server 3
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST3 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: ${{ secrets.SSH_CONFIG_SERVER }}
