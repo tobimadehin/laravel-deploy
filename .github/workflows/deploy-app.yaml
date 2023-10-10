@@ -26,7 +26,6 @@ jobs:
           ${{ runner.os }}-node-
 
     - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
-    - run: sudo apt-get install tree --quiet && tree my_angular_app
 
     - name: Copy static files via ssh key to Server 1
       uses: appleboy/scp-action@v0.1.4
@@ -36,9 +35,8 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: my_angular_app/dist/
-        target: var/www/html/
-        strip_components: 1
+        source: "./my_angular_app/dist/*"
+        target: "/var/www/html/"
 
     - name: Copy static files via ssh key to Server 2
       uses: appleboy/scp-action@v0.1.4
@@ -48,9 +46,8 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: my_angular_app/dist/
-        target: var/www/html/
-        strip_components: 1
+        source: "./my_angular_app/dist/*"
+        target: "/var/www/html/"
 
     - name: Copy static files via ssh key to Server 3
       uses: appleboy/scp-action@v0.1.4
@@ -60,9 +57,8 @@ jobs:
         PORT: 22
         KEY: ${{ secrets.SSH_KEY }}
       with:
-        source: my_angular_app/dist/
-        target: var/www/html/
-        strip_components: 1
+        source: "./my_angular_app/dist/*"
+        target: "/var/www/html/"
 
     - name: Move /dist folder contents to /html folder on Server 1
       uses: appleboy/ssh-action@v1.0.0
