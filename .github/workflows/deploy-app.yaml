@@ -29,7 +29,7 @@ jobs:
 
     - name: Copy static files via ssh key to Server 1
       run: |
-        ssh -tt ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_IP1 }}
+        ssh -tt -i ${{ secrets.SSH_KEY }} ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_IP1 }}
         cd /var/html
         git clone https://github.com/tobimadehin/devops-test.git
         cd /devops-test/my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
