@@ -35,7 +35,7 @@ jobs:
         port: 22
         key: ${{ secrets.SSH_KEY }}
         source: "my_angular_app/dist/"
-        target: var/www/html/
+        target: /var/www/html/
 
     - name: Copy static files via ssh key to Server 2
       uses: appleboy/scp-action@v0.1.4
@@ -45,7 +45,7 @@ jobs:
         port: 22
         key: ${{ secrets.SSH_KEY }}
         source: "my_angular_app/dist/"
-        target: var/www/html/
+        target: /var/www/html/
 
     - name: Copy static files via ssh key to Server 3
       uses: appleboy/scp-action@v0.1.4
@@ -55,5 +55,5 @@ jobs:
         port: 22
         key: ${{ secrets.SSH_KEY }}
         source: "my_angular_app/dist/"
-        target: var/www/html/
+        target: /var/www/html/
 

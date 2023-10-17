@@ -31,7 +31,7 @@ php -r "if (hash_file('SHA384', 'composer-setup.php') === '${HASH}') { \
 php composer-setup.php --install-dir=/usr/local/bin --filename=composer
 
 # Install composer packages
-cd /var/www/laravel_app
+cd var/www/laravel_app
 echo "yes" | composer install --optimize-autoloader --no-dev
 
 # Configure .env
@@ -50,8 +50,8 @@ php artisan view:cache
 
 # Make www-data the owning group of your app's files
 cd ~/
-chgrp -R www-data /var/www/laravel_app
-cd /var/www/laravel_app
+chgrp -R www-data var/www/laravel_app
+cd var/www/laravel_app
 chmod -R g=rwX storage/ bootstrap/cache/
 
 # Remove any possible apache installation
@@ -65,9 +65,9 @@ apt autoremove -y
 cd ~/
 apt install nginx -y
 systemctl enable --now nginx.service
-touch /etc/nginx/sites-available/laravel_app
+touch etc/nginx/sites-available/laravel_app
 # nano /etc/nginx/sites-available/laravel_app
-cd /etc/nginx/sites-enabled
+cd etc/nginx/sites-enabled
 ln -s ../sites-available/laravel_app laravel_app
 sudo rm default
 sudo nginx -t
