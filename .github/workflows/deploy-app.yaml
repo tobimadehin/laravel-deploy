@@ -25,61 +25,54 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-node-
 
-    - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
+    # - run: cd my_angular_app && npm install && npm install -g @angular/cli > /dev/null && npm run build --prod
 
     - name: Copy static files via ssh key to Server 1
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.SSH_HOST1 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        source: "my_angular_app/dist/"
-        target: var/www/html/
+      run: ${{ secrets.SSH_SCRIPT1 }}
 
-    - name: Copy static files via ssh key to Server 2
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.SSH_HOST2 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        source: "my_angular_app/dist/"
-        target: var/www/html/
+    # - name: Copy static files via ssh key to Server 2
+    #   uses: appleboy/scp-action@v0.1.4
+    #   with:
+    #     host: ${{ secrets.SSH_HOST2 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     source: "my_angular_app/dist/"
+    #     target: var/www/html/
 
-    - name: Copy static files via ssh key to Server 3
-      uses: appleboy/scp-action@v0.1.4
-      with:
-        host: ${{ secrets.SSH_HOST3 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        source: "my_angular_app/dist/"
-        target: var/www/html/
+    # - name: Copy static files via ssh key to Server 3
+    #   uses: appleboy/scp-action@v0.1.4
+    #   with:
+    #     host: ${{ secrets.SSH_HOST3 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     source: "my_angular_app/dist/"
+    #     target: var/www/html/
 
-    - name: Move /dist folder contents to /html folder on Server 1
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST1 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
+    # - name: Move /dist folder contents to /html folder on Server 1
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST1 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
 
-    - name: Move /dist folder contents to /html folder on Server 2
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST2 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
+    # - name: Move /dist folder contents to /html folder on Server 2
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST2 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
 
-    - name: Move /dist folder contents to /html folder on Server 3
-      uses: appleboy/ssh-action@v1.0.0
-      with:
-        host: ${{ secrets.SSH_HOST3 }}
-        username: ${{ secrets.SSH_USERNAME }}
-        port: 22
-        key: ${{ secrets.SSH_KEY }}
-        script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
+    # - name: Move /dist folder contents to /html folder on Server 3
+    #   uses: appleboy/ssh-action@v1.0.0
+    #   with:
+    #     host: ${{ secrets.SSH_HOST3 }}
+    #     username: ${{ secrets.SSH_USERNAME }}
+    #     port: 22
+    #     key: ${{ secrets.SSH_KEY }}
+    #     script: cp -R /var/www/html/my_angular_app/dist/* /var/www/html/
